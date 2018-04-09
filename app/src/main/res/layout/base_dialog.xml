@@ -58,7 +58,7 @@
         android:layout_weight="1"
         android:visibility="gone"
         >
-        <com.autofactory.sensorreceiver.components.BaseDialogWebView
+        <com.moremon.lib.dialog.BaseDialogWebView
             android:id="@+id/wb_descript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         android:layout_weight="0"
         android:orientation="horizontal" >
 
-        <com.autofactory.sensorreceiver.components.AutoScaleTextView
+        <com.moremon.lib.dialog.AutoScaleTextView
             android:id="@+id/btn_first"
             android:layout_width="0dp"
             android:layout_height="@dimen/d70"
@@ -91,7 +91,7 @@
             />
 
 
-        <com.autofactory.sensorreceiver.components.AutoScaleTextView
+        <com.moremon.lib.dialog.AutoScaleTextView
             android:id="@+id/btn_second"
             android:layout_width="0dp"
             android:layout_height="@dimen/d70"
@@ -102,7 +102,7 @@
             android:visibility="gone"
             />
 
-        <com.autofactory.sensorreceiver.components.AutoScaleTextView
+        <com.moremon.lib.dialog.AutoScaleTextView
             android:id="@+id/btn_third"
             android:layout_width="0dp"
             android:layout_height="@dimen/d70"
