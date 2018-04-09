@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="dialogPopButtonConfirm">
+        <item name="android:background">@drawable/sel_base_dialog_button_confirm</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/f19</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="baseButton">
+        <item name="android:background">@color/theme_bg</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/f16</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/d5</item>
+        <item name="android:paddingTop">@dimen/d5</item>
+    </style>
+
+
+    <attr name="autoScaleTextViewStyle" format="reference" />
+    <declare-styleable name="AutoScaleTextView">
+        <attr name="minTextSize" format="dimension" />
+    </declare-styleable>
+
+
+</resources>

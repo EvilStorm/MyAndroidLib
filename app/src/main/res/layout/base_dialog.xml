@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_base"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:minWidth="@dimen/base_dialog_min_width"
+    >
+
+    <LinearLayout
+        android:id="@+id/lay_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/d10"
+            android:paddingBottom="@dimen/d10"
+            android:textSize="@dimen/f24"
+            android:textColor="@color/col_48"
+            android:text="안녕하세요"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_title_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/col_48"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_descript"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="@dimen/base_dialog_min_height"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/d30"
+        android:layout_marginLeft="@dimen/d30"
+        android:layout_marginTop="@dimen/d30"
+        android:textColor="@color/col_66"
+        android:textSize="@dimen/f19"
+        android:text="테스트입니다"
+        android:visibility="gone"
+        android:lineSpacingMultiplier="1.1"
+        />
+
+    <LinearLayout
+        android:id="@+id/lay_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone"
+        >
+        <com.autofactory.sensorreceiver.components.BaseDialogWebView
+            android:id="@+id/wb_descript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/base_dialog_min_height"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/d5"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/d16"
+        android:layout_marginLeft="@dimen/d16"
+        android:layout_marginTop="@dimen/d30"
+        android:layout_marginBottom="@dimen/d20"
+        android:layout_weight="0"
+        android:orientation="horizontal" >
+
+        <com.autofactory.sensorreceiver.components.AutoScaleTextView
+            android:id="@+id/btn_first"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d70"
+            android:layout_weight="1"
+            android:tag="1"
+            android:text="@string/confirm"
+            style="@style/dialogPopButtonConfirm"
+            />
+
+
+        <com.autofactory.sensorreceiver.components.AutoScaleTextView
+            android:id="@+id/btn_second"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d70"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/d10"
+            android:tag="2"
+            style="@style/dialogPopButtonConfirm"
+            android:visibility="gone"
+            />
+
+        <com.autofactory.sensorreceiver.components.AutoScaleTextView
+            android:id="@+id/btn_third"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d70"
+            android:tag="3"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/d10"
+            style="@style/dialogPopButtonConfirm"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
