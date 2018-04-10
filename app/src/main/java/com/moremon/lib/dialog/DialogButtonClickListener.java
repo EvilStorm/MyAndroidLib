@@ -13,5 +13,7 @@ public interface DialogButtonClickListener {
     public static final int THIRD_BUTTON = 3;
 
     void onClick(Dialog dialog, int pos);
+    void checked(boolean isChecked);
+    void loadPage(String url);
 
 }

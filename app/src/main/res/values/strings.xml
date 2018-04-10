@@ -4,5 +4,6 @@
     <string name="info_wait_a_min">잠시만 기다려주세요.</string>
     <string name="confirm">확인</string>
 
+    <string name="never_show">이후 이팝업을 띄우지 않습니다.</string>
 
 </resources>

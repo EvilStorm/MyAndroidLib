@@ -2,24 +2,34 @@ package com.moremon.lib.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.moremon.lib.R;
+import com.moremon.lib.utils.LogUtil;
 import com.moremon.lib.utils.StringUtil;
 
 
@@ -91,11 +101,66 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
         }
     }
 
-    private void setDecript(String desc){
-        if(builder.descript.startsWith("<html>")){
+    private void setPager() {
+        ViewPager pager = findViewById(R.id.pager);
+        pager.setVisibility(View.VISIBLE);
+        pager.setAdapter(new ImagePagerAdater(getContext()));
+
+    }
+    private class ImagePagerAdater extends PagerAdapter {
+        Context context;
+        LayoutInflater mLayoutInflater;
+
+        public ImagePagerAdater(Context context) {
+            this.context = context;
+            mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            LogUtil.e(" getCoun : " + builder.images.length);
+            return builder.images.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == ((ImageView) object);
+        }
+
+        @Override
+        public Object instantiateItem(final ViewGroup container, final int position) {
+            ImageView imagV = (ImageView) mLayoutInflater.inflate(R.layout.row_pager, container, false);
+
+            Glide.with(context).load(builder.images[position]).into(imagV);
+
+            imagV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(builder.linkUrl[position]));
+                    context.startActivity(browserIntent);
+                    if(builder.listener != null) {
+                       builder.listener.loadPage(builder.linkUrl[position]);
+                    }
+                }
+            });
+            container.addView(imagV);
+
+            return imagV;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((LinearLayout) object);
+        }
+    }
+
+    private void setDecript(String desc) {
+        if (builder.images != null) {
+            setPager();
+        }else if(builder.descript.startsWith("<html>")){
             descript_type = DESC_TYPE_HTML;
             setWebView().loadData(desc, "text/html; charset=UTF-8", null);
-        }else if(builder.descript.startsWith("http")){
+        }else if(builder.descript.startsWith("http")) {
             descript_type = DESC_TYPE_HTTP;
             setWebView().loadUrl(builder.descript);
         }else{
@@ -107,6 +172,15 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
             tv_descript.setMovementMethod(new ScrollingMovementMethod());
             if(builder.descriptFontSize != -1){
                 tv_descript.setTextSize(builder.descriptFontSize);
+            }
+        }
+
+        if(builder.showCheckBox) {
+            View checkbox = findViewById(R.id.lay_checkbox);
+            checkbox.setVisibility(View.VISIBLE);
+            TextView chxText = findViewById(R.id.tv_chx_text);
+            if(StringUtil.isNotNull(builder.checkBoxText)) {
+                chxText.setText(builder.checkBoxText);
             }
         }
     }
@@ -174,6 +248,11 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         builder.listener.onClick(this, Integer.parseInt((String)v.getTag()));
+        View checkbox = findViewById(R.id.lay_checkbox);
+        if(checkbox.getVisibility() == View.VISIBLE) {
+            CheckBox cbx = findViewById(R.id.checkbox);
+            builder.listener.checked(cbx.isChecked());
+        }
     }
 
     public static class Builder{
@@ -189,6 +268,12 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
         private float descriptFontSize = -1;
         private String[] buttonText;
 
+        private boolean showCheckBox;
+        private String checkBoxText;
+
+        private String[] images;
+        private String[] linkUrl;
+
         private StateListDrawable buttonBackGroundColor;
         private StateListDrawable[] buttonBackGroundColorArray;
         private ColorStateList buttonTextColor;
@@ -201,6 +286,14 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
         private DialogButtonClickListener listener = new DialogButtonClickListener() {
             @Override
             public void onClick(Dialog dialog, int pos) {
+            }
+
+            @Override
+            public void checked(boolean isChecked) {
+            }
+
+            @Override
+            public void loadPage(String url) {
             }
         };
 
@@ -313,6 +406,23 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
             isCancelAbleOutSizeTouch = flag;
             return this;
         }
+
+        public Builder showCheckBox(boolean flag) {
+            showCheckBox = flag;
+            return this;
+        }
+        public Builder setCheckboxText(String txt) {
+            checkBoxText = txt;
+            return this;
+        }
+
+        public Builder setImages(String[] images, String[] linkUrls){
+            this.images = images;
+            this.linkUrl = linkUrls;
+            return this;
+        }
+
+
     }
 
 
