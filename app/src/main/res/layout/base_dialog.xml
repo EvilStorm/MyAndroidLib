@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="@dimen/d10"
-            android:paddingBottom="@dimen/d10"
-            android:textSize="@dimen/f24"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="24dp"
             android:textColor="@color/col_48"
             android:text="안녕하세요"
             android:textStyle="bold" />
@@ -41,12 +41,12 @@
         android:minHeight="@dimen/base_dialog_min_height"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:layout_marginRight="@dimen/d30"
-        android:layout_marginLeft="@dimen/d30"
-        android:layout_marginTop="@dimen/d30"
-        android:layout_marginBottom="@dimen/d30"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:textColor="@color/col_66"
-        android:textSize="@dimen/f19"
+        android:textSize="19dp"
         android:text="테스트입니다"
         android:visibility="gone"
         android:lineSpacingMultiplier="1.1"
@@ -58,7 +58,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:visibility="gone"
-        android:layout_marginBottom="@dimen/d30"
+        android:layout_marginBottom="32dp"
 
         >
         <com.moremon.lib.dialog.BaseDialogWebView
@@ -68,7 +68,7 @@
             android:minHeight="@dimen/base_dialog_min_height"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/d5"
+            android:layout_margin="5dp"
             />
     </LinearLayout>
 
@@ -81,17 +81,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_weight="1"
-        android:layout_marginBottom="@dimen/d16"
+        android:layout_marginBottom="16dp"
         />
 
     <LinearLayout
         android:id="@+id/lay_checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/d16"
-        android:layout_marginLeft="@dimen/d16"
-        android:layout_marginTop="@dimen/d16"
-        android:layout_marginBottom="@dimen/d8"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:visibility="gone"
         >
@@ -114,16 +114,16 @@
         android:id="@+id/lay_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/d16"
-        android:layout_marginLeft="@dimen/d16"
-        android:layout_marginBottom="@dimen/d20"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="0"
         android:orientation="horizontal" >
 
         <com.moremon.lib.dialog.AutoScaleTextView
             android:id="@+id/btn_first"
             android:layout_width="0dp"
-            android:layout_height="@dimen/d70"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:tag="1"
             android:text="@string/confirm"
@@ -134,9 +134,9 @@
         <com.moremon.lib.dialog.AutoScaleTextView
             android:id="@+id/btn_second"
             android:layout_width="0dp"
-            android:layout_height="@dimen/d70"
+            android:layout_height="70dp"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/d10"
+            android:layout_marginLeft="10dp"
             android:tag="2"
             style="@style/dialogPopButtonConfirm"
             android:visibility="gone"
@@ -145,10 +145,10 @@
         <com.moremon.lib.dialog.AutoScaleTextView
             android:id="@+id/btn_third"
             android:layout_width="0dp"
-            android:layout_height="@dimen/d70"
+            android:layout_height="70dp"
             android:tag="3"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/d10"
+            android:layout_marginLeft="10dp"
             style="@style/dialogPopButtonConfirm"
             android:visibility="gone"
             />
