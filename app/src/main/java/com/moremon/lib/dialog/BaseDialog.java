@@ -139,7 +139,7 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(builder.linkUrl[position]));
                     context.startActivity(browserIntent);
                     if(builder.listener != null) {
-                       builder.listener.loadPage(builder.linkUrl[position]);
+                       builder.linkClickedListener.loadLink(builder.linkUrl[position]);
                     }
                 }
             });
@@ -251,7 +251,7 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
         View checkbox = findViewById(R.id.lay_checkbox);
         if(checkbox.getVisibility() == View.VISIBLE) {
             CheckBox cbx = findViewById(R.id.checkbox);
-            builder.listener.checked(cbx.isChecked());
+            builder.checkedListener.checked(cbx.isChecked());
         }
     }
 
@@ -287,13 +287,17 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
             @Override
             public void onClick(Dialog dialog, int pos) {
             }
+        };
 
+        private DialogCheckedListener checkedListener = new DialogCheckedListener() {
             @Override
             public void checked(boolean isChecked) {
             }
+        };
 
+        private DialogLinkClickedListener linkClickedListener = new DialogLinkClickedListener() {
             @Override
-            public void loadPage(String url) {
+            public void loadLink(String url) {
             }
         };
 
@@ -307,6 +311,14 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
 
         public Builder setListener(DialogButtonClickListener listener){
             this.listener = listener;
+            return this;
+        }
+        public Builder setCheckStateChangeListener(DialogCheckedListener listener){
+            this.checkedListener = listener;
+            return this;
+        }
+        public Builder setLinkClickListener(DialogLinkClickedListener listener){
+            this.linkClickedListener = listener;
             return this;
         }
 
