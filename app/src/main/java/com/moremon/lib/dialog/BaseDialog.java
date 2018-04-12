@@ -84,7 +84,7 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
             findViewById(R.id.lay_title).setVisibility(View.GONE);
         }
 
-        if(StringUtil.isNotNull(builder.descript)){
+        if(StringUtil.isNotNull(builder.descript) || builder.images != null){
             setDecript(builder.descript);
         }
 
