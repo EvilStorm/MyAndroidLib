@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.moremon.lib">
 
-    <application />
+    <application >
+
+        <meta-data
+            android:name="com.moremon.lib.MyGlideModule"
+            android:value="GlideModule" />
+
+    </application>
 
 </manifest>

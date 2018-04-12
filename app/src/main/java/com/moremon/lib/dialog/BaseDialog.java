@@ -38,6 +38,7 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
     private final int DESC_TYPE_TEXT = 0;
     private final int DESC_TYPE_HTTP = 1;
     private final int DESC_TYPE_HTML = 2;
+    private final int DESC_TYPE_IMAGES = 3;
 
     private int descript_type = DESC_TYPE_TEXT;
 
@@ -87,15 +88,17 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
             setDecript(builder.descript);
         }
 
+        setDialogSize();
+
     }
 
     private void setDialogSize(){
-        if(descript_type == DESC_TYPE_HTTP){
+        if(descript_type == DESC_TYPE_HTTP || descript_type == DESC_TYPE_IMAGES){
             Display display = ((WindowManager)builder.context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
             Point p = new Point();
             display.getSize(p);
-            int width = (int) (p.x * 0.9f); //Display 사이즈의 40%
-            int height = (int) (p.y * 0.9f); //Display 사이즈의 60%
+            int width = (int) (p.x * builder.widthRate); //Display 사이즈의 40%
+            int height = (int) (p.y * builder.heightRate); //Display 사이즈의 60%
             getWindow().getAttributes().width = width;
             getWindow().getAttributes().height = height;
         }
@@ -118,7 +121,7 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
 
         @Override
         public int getCount() {
-            LogUtil.e(" getCoun : " + builder.images.length);
+
             return builder.images.length;
         }
 
@@ -131,16 +134,15 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
         public Object instantiateItem(final ViewGroup container, final int position) {
             ImageView imagV = (ImageView) mLayoutInflater.inflate(R.layout.row_pager, container, false);
 
-            Glide.with(context).load(builder.images[position]).into(imagV);
+            Glide.with(context)
+                    .load(builder.images[position])
+                    .into(imagV);
 
             imagV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(builder.linkUrl[position]));
                     context.startActivity(browserIntent);
-                    if(builder.listener != null) {
-                       builder.linkClickedListener.loadLink(builder.linkUrl[position]);
-                    }
                 }
             });
             container.addView(imagV);
@@ -150,12 +152,13 @@ public class BaseDialog extends Dialog implements View.OnClickListener{
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((LinearLayout) object);
+            container.removeView((ImageView) object);
         }
     }
 
     private void setDecript(String desc) {
         if (builder.images != null) {
+            descript_type = DESC_TYPE_IMAGES;
             setPager();
         }else if(builder.descript.startsWith("<html>")){
             descript_type = DESC_TYPE_HTML;
