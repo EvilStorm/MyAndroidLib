@@ -7,4 +7,6 @@
     android:adjustViewBounds="true"
     android:scaleType="fitCenter"
     android:cropToPadding="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     />
