@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class LogUtil
 {
-    private static final String APP_NAME      = "Cooling";
+    private static final String APP_NAME      = "myLog";
     private static final int    STACK_NUMBUER = 2;
     private static boolean      mDebug        =true;    // 최종 릴리즈시 false로
     private static boolean      mWriteToFile  = false;    // 로그를 파일로 쓰거나 쓰지 않거나..
