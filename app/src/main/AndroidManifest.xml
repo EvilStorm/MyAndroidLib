@@ -3,11 +3,6 @@
     package="com.moremon.lib">
 
     <application >
-
-        <meta-data
-            android:name="com.moremon.lib.MyGlideModule"
-            android:value="GlideModule" />
-
     </application>
 
 </manifest>
